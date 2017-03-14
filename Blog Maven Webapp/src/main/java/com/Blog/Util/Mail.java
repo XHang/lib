@@ -54,7 +54,7 @@ public class Mail {
 
 	} 
 	/*
-	 * 发送邮件的方法，参数举例"q1083594261", "wqnmgb", "smtp.sina.com",
+	 * 发送邮件的方法，参数举例"1083594261", "password", "smtp.sina.com",
 								"发送地址", "目的地址", "标题",
 								"正文"
 	 */

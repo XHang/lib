@@ -33,7 +33,7 @@ public class UserService  {
 		categorydao.createDefaultCategory(user.getId());//为注册用户建一个默认的日志类别
 		
 		//发送注册邮件
-		new Mail().sendMsg("q1083594261", "wqnmgb", 
+		new Mail().sendMsg("用户名", "密码", 
 							"smtp.sina.com", 
 							"q1083594261@sina.com", 
 							user.getEmail(), 
@@ -107,7 +107,7 @@ public class UserService  {
 	}
 	public void resendEmail(int id) throws Exception {
 		User user=dao.selectUserById(id);
-		new Mail().sendMsg("q1083594261", "wqnmgb", 
+		new Mail().sendMsg("用户名", "密码", 
 				"smtp.sina.com", 
 				"q1083594261@sina.com", 
 				user.getEmail(), 
