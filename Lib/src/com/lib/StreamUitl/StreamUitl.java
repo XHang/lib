@@ -11,10 +11,26 @@ public class StreamUitl {
 	 * @param in
 	 */
    public static void saveFileByStream(InputStream in,String path){
+	   BufferedOutputStream bos=null;
 	   try{
-		   BufferedOutputStream bos=new BufferedOutputStream(new FileOutputStream(path));
+		   bos=new BufferedOutputStream(new FileOutputStream(path));
+		   byte b[]=new byte[1024];
+		   int len=0;
+		   while((len=in.read(b))>-1){
+			   bos.write(b, 0, len);
+		   }
+		   bos.flush();
 	   }catch(Exception e){
-		   
+		   e.printStackTrace();
+	   }finally{
+		   try{
+			   if(bos!=null){
+				   bos.close();
+			   }
+			   in.close();
+		   }catch(Exception e){
+			   e.printStackTrace();
+		   }
 	   }
 		   
    }

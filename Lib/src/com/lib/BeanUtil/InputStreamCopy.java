@@ -20,10 +20,9 @@ public class InputStreamCopy {
 	 * @return
 	 * @throws IOException 
 	 */
-	private static InputStreamCopy beanCopy;
+	private static InputStreamCopy beanCopy=new InputStreamCopy();;
 	private InputStreamCopy(){}
 	public static InputStreamCopy getBeanCopyObject(){
-		beanCopy=new InputStreamCopy();
 		return beanCopy ;
 	}
 	byte[] cache=new byte[1024*1024];			//存储inputStream流的字节数组
@@ -40,7 +39,9 @@ public class InputStreamCopy {
 		if(cacheSize==0){
 			byte [] b=new byte[1024];
 			int len=0;
-			while((len=in.read(b))>=-1){
+			while((len=in.read(b))>-1){
+				System.out.println("len"+len);
+				System.out.println("已经拷贝"+cacheSize);
 				addByte(b);
 			}
 		}
@@ -52,10 +53,10 @@ public class InputStreamCopy {
 	 * @param b  一小段字节数组
 	 */
 	private void addByte(byte[] b){
-		if(cacheSize+getByteArrayRealLength(b)>=cache.length){		//如果当前的缓冲区实际大小加上即将加入的数据量大于缓冲区的最大限度，则需要扩充缓冲区
+		if(cacheSize+b.length>=cache.length){		//如果当前的缓冲区实际大小加上即将加入的数据量大于缓冲区的最大限度，则需要扩充缓冲区
 			expandCache();
 		}
-		for(int poi=0;poi<getByteArrayRealLength(b);poi++){
+		for(int poi=0;poi<b.length;poi++){
 			cache[cacheSize]=b[poi];
 			cacheSize++;
 		}
@@ -68,18 +69,5 @@ public class InputStreamCopy {
 		System.arraycopy(cache, 0, temp, 0, cacheSize);			//复制的长度是上一个缓冲区的大小
 		cache=temp;
 	}
-	/**
-	 * 该函数可以取到字节数组的真正长度
-	 * @param b 需要计算真正长度的数组
-	 * @return
-	 */
-	public int getByteArrayRealLength(byte[] b){
-		int poi=0;
-		for(;poi<b.length;poi++){
-			if(b[poi]=='\0'){
-				break;
-			}
-		}
-		return poi;
-	}
+	
 }
