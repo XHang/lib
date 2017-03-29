@@ -131,15 +131,4 @@ public class Crawlertool {
          }      
         return sb.toString();      
      }
-    /**
-     * 可以将所给的文件名或者url地址查找出它的文件类型，其实就是后缀
-     * @param url
-     * @return
-     */
-    public static String getUrlSuffix(String url){
-    	Pattern reg=Pattern.compile("\\.\\w{3,4}$");
-		Matcher p=reg.matcher(url);
-		p.find();
-		return p.group();
-    }
 }
