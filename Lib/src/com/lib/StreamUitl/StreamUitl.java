@@ -1,8 +1,11 @@
 package com.lib.StreamUitl;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class StreamUitl {
 	/**
@@ -32,6 +35,21 @@ public class StreamUitl {
 			   e.printStackTrace();
 		   }
 	   }
-		   
+   }
+   /**
+    * 将字节流转换成字符串
+    * @param in 需要转换的字节流
+    * @param characterSet字符编码
+    * @return 转换完毕的字符串
+    * @throws IOException
+    */
+   public static String inputStreamConversionString(InputStream in,String characterSet) throws IOException{
+	   BufferedReader read=new BufferedReader(new InputStreamReader(in,characterSet));
+	   StringBuilder sb=new StringBuilder();
+	   String line="";
+	   if((line=read.readLine())!=null){
+		   sb.append(line);
+	   }
+	   return sb.toString();
    }
 }

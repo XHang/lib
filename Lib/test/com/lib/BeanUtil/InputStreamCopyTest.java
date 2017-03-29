@@ -13,7 +13,7 @@ import java.util.List;
 import com.lib.StreamUitl.StreamUitl;
 
 /**
- * 该类可以实现一些常见对象的复制
+ * 测试类
  * @author Mr-hang
  *
  */
@@ -22,8 +22,8 @@ public class InputStreamCopyTest {
 	   InputStream in=new FileInputStream("D:\\test\\test.gif");
 	   InputStream a=InputStreamCopy.getBeanCopyObject().inputStreamCopy(in);
 	   InputStream b=InputStreamCopy.getBeanCopyObject().inputStreamCopy(in);
-	   StreamUitl.saveFileByStream(a, "d:\\test\\1.gif");
-	   StreamUitl.saveFileByStream(b, "d:\\test\\2.gif");
+	   StreamUitl.saveFileByStream(a, "D:\\test\\1.gif");
+	   StreamUitl.saveFileByStream(b, "D:\\test\\2.gif");
 	   in.close();
 	   
 	}

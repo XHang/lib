@@ -42,7 +42,7 @@ public class InputStreamCopy {
 			while((len=in.read(b))>-1){
 				System.out.println("len"+len);
 				System.out.println("已经拷贝"+cacheSize);
-				addByte(b);
+				addByte(b,len);
 			}
 		}
 		return new ByteArrayInputStream(cache, 0, cacheSize);
@@ -51,12 +51,13 @@ public class InputStreamCopy {
 	 * 该函数可以将从输出流取得的一小段字节数组存到类的缓存中。
 	 * 实现缓存效果
 	 * @param b  一小段字节数组
+	 * @param len 该字节数组的有效长度
 	 */
-	private void addByte(byte[] b){
-		if(cacheSize+b.length>=cache.length){		//如果当前的缓冲区实际大小加上即将加入的数据量大于缓冲区的最大限度，则需要扩充缓冲区
+	private void addByte(byte[] b,int len){
+		if(cacheSize+len>=cache.length){		//如果当前的缓冲区实际大小加上即将加入的数据量大于缓冲区的最大限度，则需要扩充缓冲区
 			expandCache();
 		}
-		for(int poi=0;poi<b.length;poi++){
+		for(int poi=0;poi<len;poi++){
 			cache[cacheSize]=b[poi];
 			cacheSize++;
 		}
