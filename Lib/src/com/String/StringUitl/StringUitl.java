@@ -15,4 +15,15 @@ public class StringUitl {
 		p.find();
 		return p.group();
 	}
+	/**
+	 * 提供一个文件路径。帮你提取出文件路径中的文件名称
+	 * @param path
+	 * @return
+	 */
+	public static String getFileNameByPath(String path){
+		Pattern reg=Pattern.compile("\\w+\\.\\w+$");
+		Matcher p=reg.matcher(path);
+		p.find();
+		return p.group();
+	}
 }
