@@ -100,9 +100,6 @@ public class XStreamNullConverter implements  Converter{
 			for(Method method:methods){
 				if(method.getName().indexOf("get") != -1 && !("getClass").equals(method.getName())){
 					String methodName=method.getName();
-					if(methodName.substring(3).equals("")){
-						new Date(0);
-					}
 					fieldName=firstCharLowerCase(methodName.substring(3));
 					fieldValue=method.invoke(source, new Object[]{});
 					fieldsAndValue.put(fieldName, fieldValue);
