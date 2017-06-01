@@ -43,13 +43,13 @@ public class StreamUitl {
     * @return 转换完毕的字符串
     * @throws IOException
     */
-   public static String inputStreamConversionString(InputStream in,String characterSet) throws IOException{
-	   BufferedReader read=new BufferedReader(new InputStreamReader(in,characterSet));
-	   StringBuilder sb=new StringBuilder();
-	   String line="";
-	   if((line=read.readLine())!=null){
-		   sb.append(line);
-	   }
-	   return sb.toString();
-   }
+      public static String inputStreamConversionString(InputStream in,String characterSet) throws IOException{
+		   BufferedReader read = new BufferedReader(new InputStreamReader(in,characterSet));
+		   StringBuilder sb = new StringBuilder();
+		   String line = "";
+		   while((line = read.readLine())  !=  null){
+			   sb.append(line);
+		   }
+		   return sb.toString();
+	}
 }
