@@ -1,4 +1,4 @@
-package com.lib.XStreamUitl
+package com.lib.XStreamUitl;
 
 import java.lang.reflect.Method;
 import java.util.Date;
