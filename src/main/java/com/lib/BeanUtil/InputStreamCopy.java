@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +70,51 @@ public class InputStreamCopy {
 		byte[] temp=new byte[cacheSize+1024*1024];
 		System.arraycopy(cache, 0, temp, 0, cacheSize);			//复制的长度是上一个缓冲区的大小
 		cache=temp;
+	}
+	
+	/**
+	 * 递归方法，实例bean对象的所有属性
+	 * @param clazz
+	 * @return
+	 * @throws Exception
+	 */
+	public  static  Object ClassToObj(Class<?> clazz) throws Exception{
+		Object obj = clazz.newInstance();
+		for(Method method:clazz.getMethods()){
+		if((method.getName().startsWith("get"))){
+				Class<?> returnclazz  = method.getReturnType();
+				if(isInstantiation(returnclazz)){
+					String setMethod = "set"+method.getName().substring(3);
+					Method setmethod = null;
+					try {
+						setmethod = clazz.getMethod(setMethod, returnclazz);
+					} catch (NoSuchMethodException e) {
+						//有set方法，却没有get方法，就不设置属性了。
+						continue;
+					}
+					Object returnObj = ClassToObj(returnclazz);
+					setmethod.invoke(obj, returnObj);
+				}
+			}
+		}
+		return obj;
+		
+	}
+	/**
+	 * 判断类型是否可用于json输出
+	 * @param clazz
+	 * @return
+	 */
+	public static boolean isInstantiation(Class<?> clazz){
+		try{
+				clazz.newInstance();
+				/*if(clazz.equals(Object.class)){
+					return false;
+				}*/
+				return true;
+		}catch(Exception e){
+			return false;
+		}
 	}
 	
 }
