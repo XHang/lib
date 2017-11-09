@@ -29,4 +29,7 @@ public class StringUitl {
 	public static boolean isEmpty(String str){
 		return (str == null || str.trim().length() ==0);
 	}
+	public static boolean isNoneEmpty(String str){
+		return !isEmpty(str);
+	}
 }
