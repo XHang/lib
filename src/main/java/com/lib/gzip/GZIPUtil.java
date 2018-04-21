@@ -1,5 +1,8 @@
 package com.lib.gzip;
 
+import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
+import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -44,6 +47,30 @@ public class GZIPUtil {
                 } catch (IOException e) {
                     throw new RuntimeException("压缩输入流公关闭失败",e);
                 }
+            }
+        }
+    }
+
+    /**
+     * 对压缩字节进行解压
+     * @param bytes 压缩字节
+     * @return
+     */
+    public static  byte[] umcompress(byte[] bytes) throws IOException {
+        GZIPInputStream gzip = null;
+        try {
+            ByteArrayInputStream byteInput = new ByteArrayInputStream(bytes);
+            ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+            gzip = new GZIPInputStream(byteInput);
+            int b ;
+            while((b=gzip.read())!= -1){
+                byteOut.write(b);
+            }
+            gzip.close();
+            return byteOut.toByteArray();
+        } finally {
+            if(gzip !=null){
+                gzip.close();
             }
         }
     }

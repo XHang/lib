@@ -1,11 +1,6 @@
 package com.lib.StreamUitl;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class StreamUitl {
 	/**
@@ -39,7 +34,7 @@ public class StreamUitl {
    /**
     * 将字节流转换成字符串
     * @param in 需要转换的字节流
-    * @param characterSet字符编码
+    * @param characterSet 字符编码
     * @return 转换完毕的字符串
     * @throws IOException
     */
@@ -52,4 +47,30 @@ public class StreamUitl {
 		   }
 		   return sb.toString();
 	}
+
+    /**
+     * 将输入流转成字节数组
+     * @param input 输入流
+     * @return 字节数组
+     * Note: This Method has close Stream!
+     */
+	public static byte[] inputStreamToByte(InputStream input) throws IOException {
+        try {
+            if (input == null){
+                throw new IllegalArgumentException("input Stream must be not Null");
+            }
+            BufferedInputStream in = new BufferedInputStream(input);
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            byte[]  temp = new byte[1024];
+            int len ;
+            while((len = in.read(temp)) !=-1){
+                outputStream.write(temp,0,len);
+            }
+            return outputStream.toByteArray();
+        } finally {
+            input.close();
+        }
+    }
+
+
 }
