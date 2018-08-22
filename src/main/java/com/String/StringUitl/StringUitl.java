@@ -32,4 +32,15 @@ public class StringUitl {
 	public static boolean isNoneEmpty(String str){
 		return !isEmpty(str);
 	}
+	
+	 /**
+     * 将字符串的首字母改成小写
+     * @param source
+     * @return
+     */
+    public static  String firstCharLowerCase(String source){
+    	 char[] cs = source.toCharArray();
+         cs[0] += 32;
+         return String.valueOf(cs);
+    }
 }
