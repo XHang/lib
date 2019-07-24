@@ -3,7 +3,7 @@
   <groupId>lib</groupId>
   <artifactId>lib</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <description>类库</description>、
+  <description>类库</description>
   <dependencies>
   	<dependency>
   		<groupId>com.thoughtworks.xstream</groupId>

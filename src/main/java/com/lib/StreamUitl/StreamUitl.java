@@ -83,14 +83,14 @@ public class StreamUitl {
             writer = new BufferedWriter(new FileWriter(descPath));
             writer.write(fileContent);
         } catch (IOException e) {
-            throw new DOCError("保存文件失败",e);
+            throw new RuntimeException("保存文件失败",e);
         }finally{
             try{
                 if(writer!=null){
                     writer.close();
                 }
             }catch (IOException e){
-                throw new DOCError("关闭文件流失败",e);
+                throw new RuntimeException("关闭文件流失败",e);
             }
         }
 
