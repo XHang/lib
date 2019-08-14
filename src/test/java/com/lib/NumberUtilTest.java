@@ -8,7 +8,7 @@ public class NumberUtilTest {
 
     @Test
     public void numberConverter() {
-            System.out.println(NumberUtil.numberConverter(1000001));
+            System.out.println(NumberUtil.numberConverter(100));
 
     }
 

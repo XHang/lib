@@ -43,7 +43,7 @@ public class NumberUtil {
      */
     public static String numberConverter(int number) {
         String src = number+"";
-        return "";
+        return lowLevelConverter(src);
     }
 
     /**
